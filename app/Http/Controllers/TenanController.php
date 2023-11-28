@@ -3,62 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kasir;
+use App\Models\Tenan;
 use Carbon\Carbon;
 
-class KasirController extends Controller
+class TenanController extends Controller
 {
-    // Menampilkan daftar kasir
+    // Menampilkan daftar Tenan
     public function index()
     {
-        $kasirs = Kasir::all();
-        return view('kasir.index', compact('kasirs'));
+        $tenans = Tenan::all();
+        return view('tenan.index', compact('tenans'));
     }
 
-    // Menampilkan form untuk membuat kasir baru
+    // Menampilkan form untuk membuat tenan baru
     public function create()
     {
-        return view('kasir.create');
+        return view('tenan.create');
     }
 
-    // Menyimpan kasir baru
+    // Menyimpan tenan baru
     public function store(Request $request)
     {
         $tanggalSekarang = "211524060";
-        $kodeAwal = 'KS' . $tanggalSekarang;
+        $kodeAwal = 'TK' . $tanggalSekarang;
 
-        $jumlahKasirHariIni = Kasir::where('KodeKasir', 'like', $kodeAwal . '%')->count();
+        $jumlahTenanHariIni = Tenan::where('KodeTenan', 'like', $kodeAwal . '%')->count();
 
 
-        $kodeBaru = $kodeAwal . str_pad($jumlahKasirHariIni + 1, 2, '0', STR_PAD_LEFT);
+        $kodeBaru = $kodeAwal . str_pad($jumlahTenanHariIni + 1, 2, '0', STR_PAD_LEFT);
 
-        $kasir = new Kasir();
-        $kasir->KodeKasir = $kodeBaru;
-        $kasir->Nama = $request->input('Nama');
-        $kasir->HP = $request->input('HP');
-        $kasir->save();
+        $tenan = new Tenan();
+        $tenan->KodeTenan = $kodeBaru;
+        $tenan->NamaTenan = $request->input('NamaTenan');
+        $tenan->HP = $request->input('HP');
+        $tenan->save();
 
-        return redirect()->route('kasir.index');
+        return redirect()->route('tenan.index');
     }
 
-    // Menampilkan form untuk mengedit kasir
-    public function edit($KodeKasir)
+    // Menampilkan form untuk mengedit tenan
+    public function edit($KodeTenan)
     {
-        $kasir = Kasir::findOrFail($KodeKasir);
-        return view('kasir.edit', compact('kasir'));
+        $tenan = Tenan::findOrFail($KodeTenan);
+        return view('tenan.edit', compact('tenan'));
     }
 
-    // Memperbarui kasir
-    public function update(Request $request, $KodeKasir)
+    // Memperbarui tenan
+    public function update(Request $request, $KodeTenan)
     {
-        Kasir::findOrFail($KodeKasir)->update($request->all());
-        return redirect()->route('kasir.index');
+        Tenan::findOrFail($KodeTenan)->update($request->all());
+        return redirect()->route('tenan.index');
     }
 
-    // Menghapus kasir
-    public function destroy($KodeKasir)
+    // Menghapus tenan
+    public function destroy($KodeTenan)
     {
-        Kasir::findOrFail($KodeKasir)->delete();
-        return redirect()->route('kasir.index');
+        Tenan::findOrFail($KodeTenan)->delete();
+        return redirect()->route('tenan.index');
     }
 }
