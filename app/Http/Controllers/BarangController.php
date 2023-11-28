@@ -24,8 +24,8 @@ class BarangController extends Controller
     // Menyimpan barang baru
     public function store(Request $request)
     {
-        $tanggalSekarang = Carbon::now()->format('Ymd');
-        $kodeAwal = 'BRG' . $tanggalSekarang;
+        $nim = '211524060';
+        $kodeAwal = 'BRG' . $nim;
 
         // Hitung jumlah barang yang sudah terdaftar hari ini
         $jumlahBarangHariIni = Barang::where('KodeBarang', 'like', $kodeAwal . '%')->count();
