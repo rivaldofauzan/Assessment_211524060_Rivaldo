@@ -11,10 +11,35 @@
 </head>
 <body>
     <header>
-        <!-- Navigasi atau header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Pujasera</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/transaksi/create">Transaksi <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/barang">Barang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/kasir">Kasir</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tenan">Tenan</a>
+                        </li>
+                        <!-- Tambahkan lebih banyak item sesuai kebutuhan -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <main>
+
+    <main class="container mt-3">
         @yield('content')
     </main>
 
